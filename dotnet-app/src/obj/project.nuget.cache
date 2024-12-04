@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "FPDODSQWML4=",
+  "success": true,
+  "projectFilePath": "/Users/macmike/projects/Maestria/Contenedores/dotnet-app/src/myWebApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/macmike/.nuget/packages/microsoft.netcore.app.ref/6.0.31/microsoft.netcore.app.ref.6.0.31.nupkg.sha512",
+    "/Users/macmike/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.31/microsoft.aspnetcore.app.ref.6.0.31.nupkg.sha512",
+    "/Users/macmike/.nuget/packages/microsoft.netcore.app.host.osx-x64/6.0.31/microsoft.netcore.app.host.osx-x64.6.0.31.nupkg.sha512"
+  ],
+  "logs": []
+}

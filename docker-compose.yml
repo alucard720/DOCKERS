@@ -1,0 +1,43 @@
+services:
+  nodejs-app:
+    build:
+      context: ./nodejs-app
+      dockerfile: Dockerfile
+    container_name: nodejs-container
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./nodejs-app:/app
+    command: ["npm", "start"]
+
+  dotnet-app:
+    build:
+      context: ./dotnet-app/src
+      dockerfile: Dockerfile
+    container_name: dotnet-container
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ./dotnet-app:/app
+    command: ["dotnet", "app.dll"]
+  python-app:
+    build:
+      context: ./python-app
+      dockerfile: Dockerfile
+    container_name: python-container
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./python-app:/app
+    command: ["python", "app.py"]
+  rust-app:
+    build:
+      context: ./rust-app
+      dockerfile: Dockerfile
+    container_name: rust-container
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./rust-app:/app
+    command: ["cargo", "run"]
