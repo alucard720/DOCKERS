@@ -6,6 +6,14 @@ services:
     container_name: nodejs-container
     ports:
       - "4000:4000"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: mypassword
+      DB_NAME: mydatabase
+    depends_on:
+      - mysql
     volumes:
       - ./nodejs-app:/app
     command: ["npm", "start"]
@@ -18,9 +26,18 @@ services:
     ports:
       - "5000:5000"
       - "5001:5001"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: mypassword
+      DB_NAME: mydatabase
+    depends_on:
+      - mysql
     volumes:
       - ./dotnet-app:/app
     command: ["dotnet", "app.dll"]
+
   python-app:
     build:
       context: ./python-app
@@ -28,16 +45,50 @@ services:
     container_name: python-container
     ports:
       - "8000:8000"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: mydb
+    depends_on:
+      - mysql
     volumes:
       - ./python-app:/app
     command: ["python", "app.py"]
+
   rust-app:
     build:
       context: ./rust-app
       dockerfile: Dockerfile
     container_name: rust-container
     ports:
-      - "8000:8000"
+      - "9000:9000"
+    environment:
+      DB_HOST: "Foo"
+      DB_PORT: "3306"
+      DB_USER: "root"
+      DB_PASSWORD: "root"
+      DB_NAME: "mydb"
+    depends_on:
+      - mysql
     volumes:
       - ./rust-app:/app
     command: ["cargo", "run"]
+
+  mysql:
+   image: mysql
+   container_name: mysql-container
+   ports:
+     - "3306:3306"
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_DATABASE: mydb
+     MYSQL_USER: root
+     MYSQL_PASSWORD: root
+   volumes:
+     - ./mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
+    driver: local
