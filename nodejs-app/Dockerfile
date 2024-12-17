@@ -18,9 +18,8 @@ RUN npm install -g npm@latest
 
 RUN npm install
 
-
 COPY . .
 
-EXPOSE 7000
+EXPOSE 4000
 
 CMD ["node","server.js"]

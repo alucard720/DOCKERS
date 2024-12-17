@@ -10,8 +10,8 @@ services:
       DB_HOST: mysql
       DB_PORT: 3306
       DB_USER: root
-      DB_PASSWORD: mypassword
-      DB_NAME: mydatabase
+      DB_PASSWORD: admin
+      DB_NAME: mydb
     depends_on:
       - mysql
     volumes:
@@ -30,8 +30,8 @@ services:
       DB_HOST: mysql
       DB_PORT: 3306
       DB_USER: root
-      DB_PASSWORD: mypassword
-      DB_NAME: mydatabase
+      DB_PASSWORD: admin
+      DB_NAME: mydb
     depends_on:
       - mysql
     volumes:
@@ -49,13 +49,13 @@ services:
       DB_HOST: mysql
       DB_PORT: 3306
       DB_USER: root
-      DB_PASSWORD: root
+      DB_PASSWORD: admin
       DB_NAME: mydb
     depends_on:
       - mysql
     volumes:
       - ./python-app:/app
-    command: ["python", "app.py"]
+    command: ["python", "main.py"]
 
   rust-app:
     build:
@@ -68,7 +68,7 @@ services:
       DB_HOST: "Foo"
       DB_PORT: "3306"
       DB_USER: "root"
-      DB_PASSWORD: "root"
+      DB_PASSWORD: "admin"
       DB_NAME: "mydb"
     depends_on:
       - mysql
@@ -84,8 +84,9 @@ services:
    environment:
      MYSQL_ROOT_PASSWORD: root
      MYSQL_DATABASE: mydb
-     MYSQL_USER: root
-     MYSQL_PASSWORD: root
+     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+     MYSQL_RAMDOM_ROOT_PASSWORD: "yes"
+
    volumes:
      - ./mysql-data:/var/lib/mysql
 
